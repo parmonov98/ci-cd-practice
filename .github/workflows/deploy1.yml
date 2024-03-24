@@ -21,6 +21,9 @@ jobs:
           known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
       - name: Adding Known Hosts
         run: ssh-keyscan -p 22 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Connecting to the server
+        run: ssh -vvv ${{ secrets.SSH_HOST }}
       - name: Deploy with rsync
         run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/cicd.devdata.uz/public_html/
 
