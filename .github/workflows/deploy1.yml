@@ -22,7 +22,7 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -p 22 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Connecting to the server
-        run: ssh -vvv dev@139.162.181.22
+      # - name: Connecting to the server
+      #   run: ssh -vvv dev@139.162.181.22
       - name: Deploy with rsync
-        run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/cicd.devdata.uz/public_html/
+        run: rsync -avz ./dist/ dev@139.162.181.22:/var/www/cicd.devdata.uz/public_html/
