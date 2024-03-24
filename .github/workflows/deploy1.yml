@@ -25,4 +25,4 @@ jobs:
       # - name: Connecting to the server
       #   run: ssh -vvv dev@139.162.181.22
       - name: Deploy with rsync
-        run: rsync -rt --chmod=u+rwx,g+rwx,o+rx ./dist/* dev@139.162.181.22:/var/www/cicd.devdata.uz/public_html/
+        run: rsync -rt ./dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/cicd.devdata.uz/public_html/
