@@ -1,0 +1,22 @@
+name: Testing and Deploy simulating
+on: [push, workflow_dispatch]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code 
+        uses: actions/checkout@v4
+      - name: install packs
+        run: npm ci
+      - name: lint and test
+        run: | 
+          npm run lint
+          npm run test
+      - name: build project
+        run: npm run build
+      - name: Deploy project
+        run: echo "deploying too a server..."
+
+
+    
+    
